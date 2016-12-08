@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title> 前端管理系统-消息中心 </title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="stylesheet" href="/admin-temp/css/vendor.css">
+		<script src="/js/theme.js"></script>
+		<style>
+			.card-block {
+				padding-bottom: 60px;
+			}
+			
+			#pager ul.pages {
+				display: block;
+				border: none;
+				text-transform: uppercase;
+				font-size: 12px;
+				margin: 10px 0 35px;
+				padding: 0;
+				font: normal 13px "Microsoft YaHei";
+				font-family: "Microsoft YaHei", "微软雅黑", "sans-serif";
+			}
+			
+			#pager ul.pages li {
+				list-style: none;
+				position: relative;
+				float: left;
+				padding: 6px 12px;
+				line-height: 1.42857143;
+				text-decoration: none;
+				color: #428bca;
+				background-color: #fff;
+				border: 1px solid #ddd;
+				margin-left: -1px;
+			}
+			
+			#pager ul.pages li:hover {
+				color: #fff;
+				background-color: #3c4852;
+			}
+			
+			#pager ul.pages li.pgEmpty {
+				display: none;
+				border: 1px solid #eee;
+				color: #eee;
+			}
+			
+			#pager ul.pages li.pgCurrent {
+				z-index: 2;
+				color: #fff;
+				background-color: #428bca;
+				border-color: #428bca;
+				cursor: pointer;
+			}
+			
+			#pager {
+				float: right;
+			}
+		</style>
+		<script type="text/javascript">
+			var user = {
+				username: '<%=userData.name %>',
+				userId: <%=userData.id %>,
+				photo: '<%=userData.photo %>',
+				role: <%=userData.role %>
+			};
+		</script>
+	</head>
+
+	<body>
+		<div class="main-wrapper">
+			<div class="app" id="app">
+				<% include layout/_header %>
+				<% include layout/_sidebar %>
+				<article class="content responsive-tables-page">
+					<section class="section">
+						<div class="card card-block">
+							<div class="title-block">
+								<h3 class="title">消息中心</h3>
+							</div>
+							<div class="card items">
+								<ul class="item-list striped" id="message-list">
+								</ul>
+								<!--task template-->
+								<script id="msgTpl" type="text/html">
+									{{each list as value i}}
+									<li class="item">
+										<div class="item-row">
+											<div class="item-col">{{value.content}}</div>
+											<div class="item-col fixed pull-right">{{value.noticeDate}}</div>
+										</div>
+									</li>
+									{{/each}}
+								</script>
+
+							</div>
+							<div id="pager"></div>
+						</div>
+					</section>
+				</article>
+				<% include layout/_footer %>
+			</div>
+		</div>
+		<script src="/admin-temp/js/vendor.js"></script>
+		<script src="/js/app.js"></script>
+		<script src="/js/template.js"></script>
+		<script src="/js/jquery.pager.js"></script>
+		<script src="/js/message.js"></script>
+	</body>
+
+</html>
