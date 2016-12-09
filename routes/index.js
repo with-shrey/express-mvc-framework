@@ -3,15 +3,16 @@
  */
 var express = require('express');
 var router = express.Router();
+var task = require('../controllers/task');
+var feedback = require('../controllers/feedback');
+var notice = require('../controllers/notice');
+var taskCategory = require('../controllers/task_category');
+var user = require('../controllers/user');
 
 /*task list*/
-router.get('/task/list', function(req, res, next) {
-
-});
+router.get('/task/list', );
 /*task one*/
-router.get('/task/one', function(req, res, next) {
-
-});
+router.get('/task/one', );
 /*task mod*/
 router.post('/task/mod', function(req, res, next) {
 

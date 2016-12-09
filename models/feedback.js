@@ -46,7 +46,16 @@ var Feedback = sequelize.define('feedback', {
 	createAt: false,
 	paranoid: true
 });
-//添加反馈
+
+// Task.hasMany(Feedback, {
+// 	foreignKey: 'task_id'
+// });
+
+// User.hasMany(Feedback, {
+// 	foreignKey: 'task_id'
+// });
+
+// //添加反馈
 // var feedbacks = [{
 // 	content: '反馈1',
 // 	feedback_date: new Date(),

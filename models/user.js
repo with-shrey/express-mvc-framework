@@ -50,8 +50,8 @@ var User = sequelize.define('user', {
 // 	return User.create({
 // 		username: 'admin',
 // 		password: 'admin',
-// 		role: 0,
-// 		name: 'Admin',
+// 		role: 1,
+// 		name: 'gnip',
 // 		photo: 'http://nos.netease.com/house-public/bf37aa1e955b3a0e3798528fc3bcbd69.jpg'
 // 	});
 // });

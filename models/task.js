@@ -25,6 +25,10 @@ var Task = sequelize.define('task', {
 		type: Sequelize.DATE,
 		comment: '结束日期'
 	},
+	update_date: {
+		type: Sequelize.DATE,
+		comment: '更新日期'
+	},
 	expect_date: {
 		type: Sequelize.DATE,
 		allowNull: false,
@@ -76,6 +80,14 @@ var Task = sequelize.define('task', {
 	createAt: false,
 	paranoid: true
 });
+
+// User.hasMany(Task, {
+// 	foreignKey: 'user_id'
+// });
+// Task.hasOne(TaskCategory, {
+// 	foreignKey: 'task_category_id'
+// });
+// TaskCategory.belongsTo(Task);
 
 // var tasks = [{
 // 			name: '任务1',
@@ -153,22 +165,5 @@ var Task = sequelize.define('task', {
 // 		return Task.create(i);
 // 	});
 // })
-
-Task.findAll({
-	attributes: ['*', [sequelize.fn('COUNT', sequelize.col('*')), 'totalCount']],
-	include: [{
-		model: User,
-		where: {
-			user_id: sequelize.col('User.id')
-		}
-	}, {
-		model: TaskCategory,
-		where: {
-			task_category_id: sequelize.col('TaskCategory.id')
-		}
-	}]
-}).then(function(tasks) {
-	console.log(tasks);
-});
 
 module.exports = Task

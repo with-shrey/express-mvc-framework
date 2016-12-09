@@ -42,7 +42,11 @@ var Notice = sequelize.define('notice', {
 	paranoid: true
 });
 
-//添加消息
+// User.hasMany(Notice, {
+// 	foreignKey: 'user_id'
+// });
+
+// //添加消息
 // var msgs = [{
 // 	content: '您的专题任务1已经到了反馈时间请及时反馈!',
 // 	notice_date: new Date(),
@@ -75,6 +79,7 @@ var Notice = sequelize.define('notice', {
 // 	content: '您的专题任务8已经到了反馈时间请及时反馈!',
 // 	notice_date: new Date(),
 // 	user_id: 2
+
 // }];
 
 // msgs.forEach((i) => {
