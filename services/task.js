@@ -19,7 +19,7 @@ exports.getAllTasksQuery = function(query, callback) {
 				task_category_id: sequelize.col('TaskCategory.id')
 			}
 		}]
-	}).then(function() {
-
-	})
+	}).then(function(tasks) {
+		console.log(tasks);
+	});
 }

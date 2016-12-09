@@ -70,7 +70,105 @@ var Task = sequelize.define('task', {
 		type: Sequelize.BIGINT(11),
 		comment: '积分'
 	}
+}, {
+	underscored: true,
+	timestamps: false,
+	createAt: false,
+	paranoid: true
+});
 
+// var tasks = [{
+// 			name: '任务1',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 1,
+// 			task_category_id: 5,
+// 			user_id: 2
+// 		}, {
+// 			name: '任务2',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 2,
+// 			task_category_id: 2,
+// 			user_id: 1
+// 		}, {
+// 			name: '任务3',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 2,
+// 			task_category_id: 2,
+// 			user_id: 1
+// 		}, {
+// 			name: '任务4',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 2,
+// 			task_category_id: 2,
+// 			user_id: 2
+// 		}, {
+// 			name: '任务5',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 2,
+// 			task_category_id: 2,
+// 			user_id: 2
+// 		}, {
+// 			name: '任务6',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 2,
+// 			task_category_id: 2,
+// 			user_id: 2
+// 		}, {
+// 			name: '任务7',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 1,
+// 			task_category_id: 4,
+// 			user_id: 2
+// 		}, {
+// 			name: '任务8',
+// 			start_date: new Date(),
+// 			expect_date: new Date(),
+// 			url: 'https://cnodejs.org/topic/512d8172df9e9fcc58333c73',
+// 			status: 3,
+// 			task_category_id: 1,
+// 			user_id: 2
+// 		}
+
+// 	]
+// 	//添加任务
+// tasks.forEach((i) => {
+// 	Task.sync({
+// 		force: false
+// 	}).then(function() {
+// 		// Table created
+// 		return Task.create(i);
+// 	});
+// })
+
+Task.findAll({
+	attributes: ['*', [sequelize.fn('COUNT', sequelize.col('*')), 'totalCount']],
+	include: [{
+		model: User,
+		where: {
+			user_id: sequelize.col('User.id')
+		}
+	}, {
+		model: TaskCategory,
+		where: {
+			task_category_id: sequelize.col('TaskCategory.id')
+		}
+	}]
+}).then(function(tasks) {
+	console.log(tasks);
 });
 
 module.exports = Task

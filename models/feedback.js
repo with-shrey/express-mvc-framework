@@ -40,6 +40,46 @@ var Feedback = sequelize.define('feedback', {
 		comment: '反馈人, 外键'
 	}
 
+}, {
+	underscored: true,
+	timestamps: false,
+	createAt: false,
+	paranoid: true
 });
+//添加反馈
+// var feedbacks = [{
+// 	content: '反馈1',
+// 	feedback_date: new Date(),
+// 	task_id: 1,
+// 	user_id: 2
+// }, {
+// 	content: '反馈2',
+// 	feedback_date: new Date(),
+// 	task_id: 1,
+// 	user_id: 2
+// }, {
+// 	content: '反馈3',
+// 	feedback_date: new Date(),
+// 	task_id: 1,
+// 	user_id: 2
+// }, {
+// 	content: '反馈4',
+// 	feedback_date: new Date(),
+// 	task_id: 1,
+// 	user_id: 2
+// }, {
+// 	content: '反馈5',
+// 	feedback_date: new Date(),
+// 	task_id: 1,
+// 	user_id: 2
+// }];
+
+// feedbacks.forEach((i) => {
+// 	Feedback.sync({
+// 		force: false
+// 	}).then(() => {
+// 		return Feedback.create(i)
+// 	});
+// })
 
 module.exports = Feedback

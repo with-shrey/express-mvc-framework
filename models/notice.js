@@ -35,6 +35,54 @@ var Notice = sequelize.define('notice', {
 		comment: '消息所属人, 外键'
 	}
 
+}, {
+	underscored: true,
+	timestamps: false,
+	createAt: false,
+	paranoid: true
 });
+
+//添加消息
+// var msgs = [{
+// 	content: '您的专题任务1已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务2已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务3已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务4已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务5已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务6已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务7已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }, {
+// 	content: '您的专题任务8已经到了反馈时间请及时反馈!',
+// 	notice_date: new Date(),
+// 	user_id: 2
+// }];
+
+// msgs.forEach((i) => {
+// 	Notice.sync({
+// 		force: false
+// 	}).then(() => {
+// 		return Notice.create(i);
+// 	})
+// })
 
 module.exports = Notice
