@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试接口</title>
+	 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+</head>
+<body>
+ <button id="addTask">添加</button>
+ <button id="modTaskSelf">自己修改</button>
+ <button id="modTaskAdmin">管理员修改</button>
+	<script>
+		$('#addTask').on('click', function(){
+			  $.ajax({
+					url: '/task/add',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						name: '测试添加1',
+						user_id: 1,
+						start_date: '2016-10-24',
+						expect_date: '2016-10-24',
+						task_category_id: '1',
+						url: 'www.baidu.com'
+					},
+					success: function(data) {
+						if(data.status == 'success') {
+						  console.log(data);
+						}
+					}
+				});
+	  });
+
+	  $('#modTaskSelf').on('click', function(){
+	  		$.ajax({
+					url: '/task/mod/self',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						task_id: 10,
+						name: '测试修改1',
+						user_id: 1,
+						start_date: '2016-10-24',
+						expect_date: '2016-10-24',
+						task_category_id: '1',
+						url: 'www.google.com',
+						status: 1
+					},
+					success: function(data) {
+						if(data.status == 'success') {
+						  console.log(data);
+						}
+					}
+				});
+	  });
+	  $('#modTaskAdmin').on('click', function(){
+	  		$.ajax({
+					url: '/task/mod/admin',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						task_id: 10,
+						name: '测试修改1',
+						user_id: 1,
+						start_date: '2016-10-24',
+						expect_date: '2016-10-24',
+						task_category_id: '1',
+						url: 'www.google.com',
+						status: 1,
+						complete_day:3,
+						quality: 1.2,
+						score: 3.6
+					},
+					success: function(data) {
+						if(data.status == 'success') {
+						  console.log(data);
+						}
+					}
+				});
+	  })
+
+
+	</script>
+</body>
+</html>

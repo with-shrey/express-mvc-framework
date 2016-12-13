@@ -15,7 +15,7 @@ exports.getAllTasksQuery = (query, cb) => {
 DATE_FORMAT(end_date,'%Y-%m-%d') as end_date,DATE_FORMAT(update_date,'%Y-%m-%d %l:%i:%s') as update_date,\
 DATE_FORMAT(expect_date,'%Y-%m-%d') as expect_date,complete_day,url,status,task_categories.name as task_categories_name,\
 users.name as user_name,users.photo as user_photo FROM tasks,users,task_categories where tasks.user_id = users.id and tasks.task_category_id = task_categories.id";
-	if (keyword) statement += " and tasks.name like " + "%" + keyword + "%";
+	if (keyword) statement += " and tasks.name like " + "'%" + keyword + "%'";
 	if (userId) statement += " and user_id = " + userId;
 	statement += " ORDER BY status,update_date DESC limit " + ((pageNum - 1) * pageSize) + ", " + pageSize;
 	sequelize.query(statement).then((data) => {
@@ -28,7 +28,7 @@ exports.getTotalCount = (query, cb) => {
 		keyword = query.keyword,
 		pageNum = query.pageNum,
 		pageSize = query.pageSize || 0;
-	if (keyword) statement += " and tasks.name like " + "%" + keyword + "%";
+	if (keyword) statement += " and tasks.name like " + "'%" + keyword + "%'";
 	if (userId) statement += " and user_id = " + userId;
 	var statement = "SELECT count(*) as totalCount FROM tasks,users,task_categories where tasks.user_id = users.id and tasks.task_category_id = task_categories.id";
 	sequelize.query(statement).then((rows) => {
@@ -59,16 +59,19 @@ exports.addTask = (query, cb) => {
 	queryObj.url = query.url || '';
 	queryObj.task_category_id = query.task_category_id;
 	queryObj.status = 1;
-	Task.build(queryObj).save().then(() => {
-		cb();
+	console.log(queryObj);
+	Task.build(queryObj).save().then((data) => {
+		console.log(data.dataValues);
+		cb(data.dataValues);
+	}).catch((err) => {
+		cb(err);
 	})
 };
 
 exports.modTaskSelf = (query, cb) => {
-	var queryObj = {},
-		taskId = query.task_id;
+	var queryObj = {};
+	taskId = query.task_id;
 	queryObj.name = query.name;
-	queryObj.user_id = query.user_id;
 	queryObj.start_date = query.start_date;
 	queryObj.update_date = new Date();
 	queryObj.expect_date = query.expect_date;
@@ -77,14 +80,16 @@ exports.modTaskSelf = (query, cb) => {
 	queryObj.status = query.status;
 	Task.update(queryObj, {
 		where: {
-			task_id: taskId
+			id: taskId
 		}
-	})
+	}).then((data) => {
+		cb(data);
+	});
 };
 
-exports.modTaskMng = (query, cb) => {
-	var queryObj = {},
-		taskId = query.task_id;
+exports.modTaskAdmin = (query, cb) => {
+	var queryObj = {};
+	taskId = query.task_id;
 	queryObj.name = query.name;
 	queryObj.user_id = query.user_id;
 	queryObj.start_date = query.start_date;
@@ -96,11 +101,13 @@ exports.modTaskMng = (query, cb) => {
 	queryObj.complete_day = query.complete_day;
 	queryObj.quality = query.quality;
 	queryObj.score = query.score;
+	console.log(queryObj);
 	Task.update(queryObj, {
 		where: {
-			task_id: taskId
+			id: taskId
 		}
-	}).then(() => {
-		cb();
+	}).then((data) => {
+		console.log(data);
+		cb(data);
 	})
 };

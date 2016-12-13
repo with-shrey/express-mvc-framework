@@ -15,12 +15,11 @@ router.get('/task/list', task.list);
 router.get('/task/one', task.getOne);
 
 /*task mod*/
-router.post('/task/mod', function(req, res, next) {
+router.post('/task/mod/self', task.update);
+/*admin mod*/
+router.post('/task/mod/admin', task.updateAdmin);
 
-});
 /*task add*/
-router.post('/task/add', function(req, res, next) {
-
-})
+router.post('/task/add', task.add);
 
 module.exports = router;
