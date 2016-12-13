@@ -10,14 +10,17 @@ var taskCategory = require('../controllers/task_category');
 var user = require('../controllers/user');
 
 /*task list*/
-router.get('/task/list', );
+router.get('/task/list', task.list);
+
 /*task one*/
-router.get('/task/one', );
+router.get('/task/one', function(req, res, next) {
+
+});
 /*task mod*/
 router.post('/task/mod', function(req, res, next) {
 
-	})
-	/*task add*/
+});
+/*task add*/
 router.post('/task/add', function(req, res, next) {
 
 })

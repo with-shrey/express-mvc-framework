@@ -8,9 +8,9 @@ exports.list = (req, res, next) => {
 	query.pageNum = req.query.pageNum;
 	query.pageSzie = req.query.pageSize || 10;
 	Task.getTotalCount(query, (err, data) => {
-		console.log(data)
+		console.log(data);
 		Task.getAllTasksQuery(query, (err, data) => {
-
+			console.log(data);
 		})
 	})
 }
