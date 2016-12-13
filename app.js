@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 
 if (!module.parent) {
 	app.listen(config.port, function() {
-		console.log(`app is listening at http://localhost:` + config.port);
+		console.log(`app is listening at http://localhost:${config.port}`);
 	});
 }
 

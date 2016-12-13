@@ -11,11 +11,9 @@ var user = require('../controllers/user');
 
 /*task list*/
 router.get('/task/list', task.list);
-
 /*task one*/
-router.get('/task/one', function(req, res, next) {
+router.get('/task/one', task.getOne);
 
-});
 /*task mod*/
 router.post('/task/mod', function(req, res, next) {
 
